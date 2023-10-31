@@ -1,0 +1,13 @@
+.readmore{
+    background:red;
+}
+   
+.smalldesc {
+    max-height: 200px;
+    overflow: hidden;
+    transition: all 1s ease;
+}
+.smalldesc.expand {
+    max-height: var(--originalHeight);
+}
+
