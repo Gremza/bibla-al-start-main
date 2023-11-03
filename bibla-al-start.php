@@ -5,7 +5,7 @@
  * @package       BIBLAALST
  * @author        Marsel Preci
  * @license       gplv2
- * @version       1.0.0
+ * @version       1.0.1
  *
  * @wordpress-plugin
  * Plugin Name:   Bibla.al start
@@ -29,8 +29,7 @@ function start() {
     $string =  file_get_contents('https://devocion.bibla.al'); 
     $json_a = json_decode($string, true);
     $acf= $json_a['todayverse'];   
-	$stories=$json_a['stories'];
- 
+	$stories=$json_a['stories']; 
 //	echo $acf['content']; echo "</br>";
 //	echo $acf['bg_image']; echo "</br>";
 //	echo $acf['txt_color']; echo "</br>";
@@ -39,29 +38,36 @@ function start() {
 //	echo $acf['verse_number']; echo "</br>";
 	?>
 <style>
+	.vargucontent a{
+		color:#f00!important;
+	}
 	.vargucontent{
 		background-image:url('<?php echo $acf['bg_image'];?>');
 		background-size:cover;
 		text-align:center;
-		padding:20px;
-		 
-		max-width:600px;
-		margin:auto 10px;
+		padding:20px; 
+		margin:auto;
 		color:<?php echo $acf['txt_color'];?>;
-		padding-bottom:50px;
 		border-radius:20px;
-		box-shadow:0px 0px 11px #ccc;
-		
+		box-shadow:0px 0px 11px #ccc; 
 			
 	}
+	.vargucontent {
+ 
+ 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 	.lexoneapp{
 		font-size:14px;
 		float:right;
-		padding-top:20px;
+		padding-top:10px;
 	}
 	.lexoneapp span{ padding:10px 5px ;  }
 	.referenca{
-		float:left; 
+		font-size: 14px;
+		float: left;
+		padding-top: 10px;
 	}
 	.vargu{
 		font-size:18px; 
@@ -71,8 +77,8 @@ function start() {
 <div class="vargucontent"> 
 	<h2><?php echo $acf['title'];?></h2>
 	<div class="vargu"><?php echo $acf['content'];?></div>
-	<div class="referenca"></div>	
-	<div class="lexoneapp">devocioni ne app <span><a href="#"> iOS</a></span> <span><a href="#"> Android</a></span></div>
+	<div class="referenca"><?php echo $acf['book_name'].' '.$acf['chapter_name'].':'.$acf['verse_number'];?></div>	
+	<div class="lexoneapp">Lexo në app <span><a href="https://apps.apple.com/us/app/bibla-shqip-bibla-al/id6463127209"> iOS</a></span> <span><a href="https://play.google.com/store/apps/details?id=com.gremza.bibla&hl=en&gl=US"> Android</a></span></div>
 </div>
 <?php		
 //	foreach ($stories as $k=>$v){
